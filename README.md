@@ -9,7 +9,8 @@ costruito sul dump Wikimedia Enterprise HTML del 20 marzo 2025.
 - ricerca full-text con evidenziazione dei termini, filtri per anno, categoria e testata, ordinamento per data
 - sintassi avanzata (`"frase esatta"`, `+obbligatorio`, `-escluso`, `a | b`, `prefisso*`)
 - autocompletamento dei titoli, pagina dell'articolo con fonti, articoli correlati e notizie simili
-- tre profili di ranking (`baseline`, `italian`, `full`) selezionabili dall'interfaccia, usati per la valutazione
+- tre profili di ranking (`baseline`, `v1`, `full`) selezionabili dall'interfaccia; quello di produzione è scelto in base alla valutazione sperimentale
+- strategia di test: test automatici (pytest) e valutazione offline con due collezioni di test, ablation e test di significatività
 
 ## Architettura
 
@@ -115,8 +116,77 @@ Esempio: *"L'Unione Europea dell'Italia"* → `union`, `europe`, `ital`.
 | Profilo | Descrizione |
 |---|---|
 | `baseline` | analyzer standard, campi `title` + `body`, OR fra i termini |
-| `italian` | analyzer italiano; `title^3`, `lead^1.5`, `body`, `categories^2`, `location`; `minimum_should_match: 2<75%` |
-| `full` | `italian` + bonus per frase esatta nel titolo/testo e per coppie di parole adiacenti (shingle) |
+| `v1` | primo design: analyzer italiano, `best_fields` su `title^3`, `lead^1.5`, `body`, `categories^2`, `location`; `minimum_should_match: 2<75%`; bonus per frase esatta e shingle |
+| `full` | **produzione**: analyzer italiano, `cross_fields` su `title^1.5`, `lead`, `body`; `minimum_should_match: 50%`; niente bonus per le frasi |
+
+`full` è il risultato della valutazione: il primo design (`v1`) era **peggiore della baseline**
+(MAP 0.480 contro 0.572), soprattutto perché il minimum match al 75% tagliava la recall.
+Le categorie restano disponibili come filtri ma non entrano nel punteggio, così il profilo in
+produzione è esattamente quello misurato. Le frasi tra virgolette sono sempre cercate sul testo
+non stemmato (`.exact`).
+
+## Strategia di test
+
+**1. Test automatici** (`tests/`, 40 test, `pytest`):
+
+| File | Cosa verifica |
+|---|---|
+| `test_parser.py` | parsing delle date, filtro delle categorie, pulizia dell'HTML (boilerplate, box, figure, tabelle), estrazione di fonti e articoli correlati, scarto di bozze e redirect |
+| `test_search.py` | analyzer (elisione, stopword, accenti, stemming), ricerca di articoli noti per ogni profilo, sintassi avanzata (frasi, esclusione), filtri, faccette, ordinamento, paginazione, autocompletamento |
+| `test_web.py` | pagine e API (status, contenuti, highlight, 404, parametri non validi, escaping HTML della query) |
+
+```bash
+.venv/bin/python -m pytest -q
+```
+
+I test di integrazione vengono saltati se Elasticsearch non è attivo.
+
+**2. Valutazione offline della qualità del ranking** (`eval/`), con due collezioni di test indipendenti:
+
+- **Topic ad-hoc** (`eval/topics.json`): 50 query scritte come le scriverebbe un utente
+  (es. *"delitto di Garlasco"*). I giudizi di rilevanza vengono dalle **categorie editoriali** di
+  Wikinotizie (es. *Omicidio Chiara Poggi*), assegnate dai redattori e quindi indipendenti dal
+  sistema; ci sono da 12 a 93 documenti rilevanti per topic. Per evitare che la risposta entri nel
+  ranking, nessun sistema valutato cerca nel campo categorie.
+  Metriche: P@10, R-Precision, MAP, nDCG@10, Recall@100.
+- **Known-item** (`eval/known_items.json`, generato da `eval/make_known_items.py`): 300 articoli
+  casuali; per ognuno la query è formata dalle 4 parole più distintive del testo (tf-idf)
+  **assenti dal titolo**, come per un utente che ricorda di cosa parlava la notizia ma non il titolo.
+  Metriche: MRR, Success@1, Success@10.
+
+Le **ablation** variano un solo aspetto di `full` alla volta (stemming, analyzer, tipo di
+multi_match, minimum match, boost del titolo, bonus per le frasi, categorie). Le differenze sono
+verificate con un **test di randomizzazione appaiato** (10.000 permutazioni). Per limitare
+l'overfitting, `full` è stato scelto solo sui topic *dev* (posizioni pari); i topic *test*
+(posizioni dispari) servono da verifica.
+
+**3. Latenza**: 500 ricerche con il profilo di produzione, comprese faccette ed evidenziazione.
+
+```bash
+.venv/bin/python eval/evaluate.py data/processed/articles.jsonl   # -> eval/results/RESULTS.md
+```
+
+### Risultati principali
+
+| Sistema | MAP | nDCG@10 | P@10 | MAP (topic test) | MRR known-item |
+|---|---|---|---|---|---|
+| baseline | 0.572 | 0.736 | 0.714 | 0.504 | 0.937 |
+| v1 (primo design) | 0.480 | 0.678 | 0.654 | 0.436 | 0.922 |
+| **full (produzione)** | **0.624** | **0.774** | **0.760** | **0.550** | 0.933 |
+
+- `full` è significativamente migliore della baseline su MAP e nDCG@10, e sul known-item è allo stesso livello (differenza non significativa).
+- Il fattore più importante è il **minimum_should_match**: al 75% costa 0.11 di MAP (R@100 da 0.84 a 0.65).
+- I **bonus per frase/shingle peggiorano** il ranking (MAP −0.05, MRR −0.02, entrambi significativi), quindi sono stati tolti.
+- **Boost del titolo**: a 3 non cambia la MAP sui topic ma fa crollare il known-item (MRR 0.84); 1.5 è il compromesso.
+- **Stemming e analyzer italiano** danno un vantaggio piccolo e **non significativo** (MAP 0.624 contro 0.614 senza stemming e 0.605 con l'analyzer standard).
+- **Latenza**: p50 ≈ 3 ms, p95 ≈ 5 ms.
+
+Le tabelle complete, compresa la MAP per ogni topic, sono in [`eval/results/RESULTS.md`](eval/results/RESULTS.md).
+
+**Limiti.** I giudizi derivati dalle categorie sono incompleti: un articolo pertinente ma non
+categorizzato conta come non rilevante, il che sottostima la precisione di tutti i sistemi allo
+stesso modo. Le query known-item sono sintetiche. Mancano i sinonimi: per esempio *"pandemia
+coronavirus"* non trova gli articoli che dicono solo *"COVID-19"*.
 
 ## Struttura del repository
 
@@ -125,6 +195,8 @@ Esempio: *"L'Unione Europea dell'Italia"* → `union`, `europe`, `ital`.
 ├── es/index_settings.json    analyzer + mapping
 ├── requirements.txt
 ├── scripts/setup.sh          setup completo
+├── tests/                    test automatici (pytest)
+├── eval/                     topic, known-item, script di valutazione, risultati
 └── src/
     ├── parse_dump.py
     ├── index_articles.py

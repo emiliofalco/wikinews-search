@@ -1,0 +1,1805 @@
+{
+ "description": "For N random articles we simulate a user who remembers *what the article was about*\nbut not its title: the query is made of the K most distinctive words of the body\n(tf-idf, document frequency between 2 and 300) that do NOT appear in the title,\nlisted in order of first appearance.",
+ "items": [
+  {
+   "id": "K001",
+   "query": "match sconfigge single heavyweight",
+   "doc_id": 39266,
+   "title": "Royal Rumble 2014"
+  },
+  {
+   "id": "K002",
+   "query": "finanze confcommercio cernobbio creeranno",
+   "doc_id": 39593,
+   "title": "Padoan: \"Nuovo piano di privatizzazioni, senza sfasciare i conti\""
+  },
+  {
+   "id": "K003",
+   "query": "abasan materdomini monini edilesse",
+   "doc_id": 8579,
+   "title": "Pallavolo campionato italiano maschile Serie A2 2006-2007 11° giornata ritorno"
+  },
+  {
+   "id": "K004",
+   "query": "offerta concordata azionaria esborso",
+   "doc_id": 4277,
+   "title": "Banca Intesa lancia opa su UPI Banka 2006"
+  },
+  {
+   "id": "K005",
+   "query": "lione regola salisburgo ludogorec",
+   "doc_id": 39459,
+   "title": "Europa League: Juve, Fiorentina e Napoli agli ottavi, Lazio eliminata dai bulgari"
+  },
+  {
+   "id": "K006",
+   "query": "putin elettorato medvedev votare",
+   "doc_id": 19105,
+   "title": "Russia: si vota per le elezioni presidenziali"
+  },
+  {
+   "id": "K007",
+   "query": "elias enduro stuntman freestyle",
+   "doc_id": 39491,
+   "title": "Motodays 2014"
+  },
+  {
+   "id": "K008",
+   "query": "britannico campione froome pinotti",
+   "doc_id": 35491,
+   "title": "Giochi olimpici 2012: Wiggins vince la prova a cronometro di ciclismo su strada"
+  },
+  {
+   "id": "K009",
+   "query": "partiti sinistra veltroni comizio",
+   "doc_id": 19109,
+   "title": "Domenica di campagna elettorale, Berlusconi ad un collaboratore: «Vecchio, non rincoglionito»"
+  },
+  {
+   "id": "K010",
+   "query": "ordigno bomba congegno azionato",
+   "doc_id": 15649,
+   "title": "Attentato alle Maldive: feriti 12 turisti"
+  },
+  {
+   "id": "K011",
+   "query": "macos tvos watchos visualizzato",
+   "doc_id": 45742,
+   "title": "Un carattere indiano è capace di bloccare i dispositivi Apple"
+  },
+  {
+   "id": "K012",
+   "query": "iniesta calcia robben heitinga",
+   "doc_id": 29743,
+   "title": "Calcio, Mondiali 2010: ¡España campeona del mundo!"
+  },
+  {
+   "id": "K013",
+   "query": "agritubel bretagne armor métropole",
+   "doc_id": 12566,
+   "title": "Classica Loira Atlantica 2007"
+  },
+  {
+   "id": "K014",
+   "query": "autorete dinamo rimonta maribor",
+   "doc_id": 35495,
+   "title": "UEFA Champions League 2012-2013: andata del terzo turno preliminare"
+  },
+  {
+   "id": "K015",
+   "query": "israeliano avigdor riciclaggio denaro",
+   "doc_id": 36698,
+   "title": "Israele: ministro Lieberman accusato di frode"
+  },
+  {
+   "id": "K016",
+   "query": "carpi ammissione graduatoria ripescaggi",
+   "doc_id": 21055,
+   "title": "Calcio, finale Play Off Serie D: Sambonifacese batte Colligiana 2-0"
+  },
+  {
+   "id": "K017",
+   "query": "savona liguria veterani juniores",
+   "doc_id": 15270,
+   "title": "Il CUS Genova Hockey festeggia i suoi 60 anni"
+  },
+  {
+   "id": "K018",
+   "query": "commosso ricorderò discorso riletto",
+   "doc_id": 24631,
+   "title": "Forza Italia si scioglie e confluisce nel Popolo della Libertà"
+  },
+  {
+   "id": "K019",
+   "query": "temperature gradi colpisce fronteggiare",
+   "doc_id": 13705,
+   "title": "Ondata di caldo: l'Italia boccheggia"
+  },
+  {
+   "id": "K020",
+   "query": "gestione crediti creditore creditori",
+   "doc_id": 33864,
+   "title": "Federconsorzi: una risurrezione tra le polemiche"
+  },
+  {
+   "id": "K021",
+   "query": "futurista secchio colorante clemente",
+   "doc_id": 16564,
+   "title": "Roma: vandali colorano l'acqua della Fontana di Trevi, a rischio i marmi"
+  },
+  {
+   "id": "K022",
+   "query": "stradale sesia tornavano carbonizzati",
+   "doc_id": 8874,
+   "title": "Cinque giovani morti in un incidente nel novarese"
+  },
+  {
+   "id": "K023",
+   "query": "corrisponde juve stabia crotone",
+   "doc_id": 34636,
+   "title": "Calcio, Serie B 2011-2012: 35ª giornata"
+  },
+  {
+   "id": "K024",
+   "query": "eluso nascondeva esplosiva addestrati",
+   "doc_id": 25502,
+   "title": "Afghanistan: 18 morti in attentato a stazione di polizia"
+  },
+  {
+   "id": "K025",
+   "query": "nonché posticipi serali sampdoria",
+   "doc_id": 37285,
+   "title": "Calcio, Serie A 2012-2013: 29ª giornata"
+  },
+  {
+   "id": "K026",
+   "query": "attuano trattato marrakech deroghe",
+   "doc_id": 45078,
+   "title": "Più liberi i testi per le persone con disabilità visive"
+  },
+  {
+   "id": "K027",
+   "query": "banca miliardi pagamento multa",
+   "doc_id": 39274,
+   "title": "Approvato il decreto IMU-Bankitalia"
+  },
+  {
+   "id": "K028",
+   "query": "promozione latina prevarrebbe posizionato",
+   "doc_id": 39981,
+   "title": "Calcio, Serie B 2013-2014: Playoff, Andata finale"
+  },
+  {
+   "id": "K029",
+   "query": "scomparso decollo ventinove chennai",
+   "doc_id": 43470,
+   "title": "India: aereo militare sparito dai radar"
+  },
+  {
+   "id": "K030",
+   "query": "arata architettura grattacielo palasport",
+   "doc_id": 51456,
+   "title": "Morto l'architetto Isozaki"
+  },
+  {
+   "id": "K031",
+   "query": "cubi centigrado ondata freddo",
+   "doc_id": 4574,
+   "title": "Il gas scarseggia: si toccano le riserve"
+  },
+  {
+   "id": "K032",
+   "query": "emergenza eventi dipartimento vaghezza",
+   "doc_id": 28657,
+   "title": "Privatizzazione della Protezione Civile in società per azioni"
+  },
+  {
+   "id": "K033",
+   "query": "eliminatoria fognini doppio troicki",
+   "doc_id": 37008,
+   "title": "Coppa Davis: Italia ai quarti di finale"
+  },
+  {
+   "id": "K034",
+   "query": "cassazione brogli verifica voto",
+   "doc_id": 5531,
+   "title": "Berlusconi: richieste di riconteggio"
+  },
+  {
+   "id": "K035",
+   "query": "natale sandringham principe william",
+   "doc_id": 9359,
+   "title": "Kate Middleton rifiuta l'invito della regina"
+  },
+  {
+   "id": "K036",
+   "query": "coste yucatan peggiorando frances",
+   "doc_id": 2260,
+   "title": "Uragano Emily Messico 2005"
+  },
+  {
+   "id": "K037",
+   "query": "camonica energia sicuramente frequentatissima",
+   "doc_id": 27057,
+   "title": "Berzo Demo: si spezza un cavo dell'alta tensione"
+  },
+  {
+   "id": "K038",
+   "query": "perth fukuoka coppe agonismo",
+   "doc_id": 5142,
+   "title": "È morto il pallanuotista spagnolo Jesús Rollán"
+  },
+  {
+   "id": "K039",
+   "query": "vicebrigadiere cimitero ponte colleghi",
+   "doc_id": 5365,
+   "title": "Perugia: carabiniere ferito alla testa, è in coma farmacologico"
+  },
+  {
+   "id": "K040",
+   "query": "perquisita cultura professor bicocca",
+   "doc_id": 31370,
+   "title": "Apprensione per due intellettuali berberi libici"
+  },
+  {
+   "id": "K041",
+   "query": "vota rinnovare votare tessera",
+   "doc_id": 39921,
+   "title": "Aperti in Europa i seggi per le elezioni"
+  },
+  {
+   "id": "K042",
+   "query": "junichiro koizumi ministri materno",
+   "doc_id": 15193,
+   "title": "Giappone: Shinzo Abe si è dimesso dalla carica di primo ministro"
+  },
+  {
+   "id": "K043",
+   "query": "rustavi zhenis golubovci domzale",
+   "doc_id": 17402,
+   "title": "Calcio Champions League 2007-2008 1º turno preliminare andata"
+  },
+  {
+   "id": "K044",
+   "query": "stufa abitazione divano compere",
+   "doc_id": 25043,
+   "title": "Incudine: anziana muore arsa viva"
+  },
+  {
+   "id": "K045",
+   "query": "passaporti controllati velocizzazione aderisce",
+   "doc_id": 24911,
+   "title": "La Svizzera entra ufficialmente nell'area Schengen"
+  },
+  {
+   "id": "K046",
+   "query": "paure matura rimandando spettanti",
+   "doc_id": 24609,
+   "title": "Riforma dell'editoria: Ricardo Franco Levi annuncia lo stralcio delle norme su internet dal progetto di legge"
+  },
+  {
+   "id": "K047",
+   "query": "marito rapina pezzi vetro",
+   "doc_id": 21775,
+   "title": "Val Seriana: donna ritrovata sgozzata nel proprio appartamento"
+  },
+  {
+   "id": "K048",
+   "query": "honda pedrosa hayden roberts",
+   "doc_id": 16601,
+   "title": "MotoGP: gran premio di Malesia, vince Stoner"
+  },
+  {
+   "id": "K049",
+   "query": "promulgazione riunita fischiato riunite",
+   "doc_id": 9328,
+   "title": "Prodi, errori tattici nella finanziaria"
+  },
+  {
+   "id": "K050",
+   "query": "approssimativamente ospitava iraniani ricoverate",
+   "doc_id": 3944,
+   "title": "Iran: aereo militare cade su un condominio, più di 100 morti"
+  },
+  {
+   "id": "K051",
+   "query": "camonica culto romana parco",
+   "doc_id": 28835,
+   "title": "Breno: presentato libro sul «santuario di Minerva»"
+  },
+  {
+   "id": "K052",
+   "query": "monaco neuer herrmann reus",
+   "doc_id": 34062,
+   "title": "Bundesliga: il Borussia Mönchengladbach batte il Bayern capolista e vola in vetta alla classifica"
+  },
+  {
+   "id": "K053",
+   "query": "duomo tettamanzi cantautrice passi",
+   "doc_id": 20450,
+   "title": "Milano: l'Arcivescovo incontra gli animatori dell'oratorio estivo"
+  },
+  {
+   "id": "K054",
+   "query": "associazioni bersaglieri fiori eretto",
+   "doc_id": 15314,
+   "title": "Roma, celebrazioni per il 137° anniversario della breccia di Porta Pia"
+  },
+  {
+   "id": "K055",
+   "query": "turco academy harold pinter",
+   "doc_id": 8721,
+   "title": "Orhan Pamuk è il Premio Nobel per la letteratura 2006"
+  },
+  {
+   "id": "K056",
+   "query": "commerciale neurologia borachia conforti",
+   "doc_id": 48392,
+   "title": "Addio ad Arcangelo Ferrari, ex amministratore delegato di Oto Melara"
+  },
+  {
+   "id": "K057",
+   "query": "bitcoin profili truffatori clark",
+   "doc_id": 49437,
+   "title": "Ci sono stati degli arresti per l'attacco informatico contro Twitter"
+  },
+  {
+   "id": "K058",
+   "query": "cocaina eroina hashish cooper",
+   "doc_id": 32047,
+   "title": "Viterbo: operazione antidroga. Arrestate quattro persone"
+  },
+  {
+   "id": "K059",
+   "query": "palestinese palestinesi begin hamas",
+   "doc_id": 20326,
+   "title": "Contestazioni ad Israele: da Eno a Bin Laden"
+  },
+  {
+   "id": "K060",
+   "query": "quarantaduenne efferatezza carnefice esanime",
+   "doc_id": 33212,
+   "title": "Torino: sordomuto uccide il compagno, forse la gelosia come movente"
+  },
+  {
+   "id": "K061",
+   "query": "stade hodgson jones edinburgh",
+   "doc_id": 4615,
+   "title": "Seconda giornata Sei Nazioni 2006"
+  },
+  {
+   "id": "K062",
+   "query": "chiudere mistura afflitta falsificati",
+   "doc_id": 44410,
+   "title": "Giappone: chiuso il progetto sul reattore nucleare sperimentale"
+  },
+  {
+   "id": "K063",
+   "query": "mozione afghanistan voto voti",
+   "doc_id": 12145,
+   "title": "Governo Prodi battuto al Senato in politica estera"
+  },
+  {
+   "id": "K064",
+   "query": "ascoli empoli inter adriano",
+   "doc_id": 6309,
+   "title": "Calcio Italia campionato nazionale Serie A 2006-2007 1° giornata ritorno"
+  },
+  {
+   "id": "K065",
+   "query": "mahmoud proteste duramente avete",
+   "doc_id": 27010,
+   "title": "Iran: Khamenei conferma Ahmadinejad alla presidenza"
+  },
+  {
+   "id": "K066",
+   "query": "confermato organizzare debuttò jugoslavia",
+   "doc_id": 47863,
+   "title": "Eurovision Song Contest 2020: habemus data"
+  },
+  {
+   "id": "K067",
+   "query": "balah immediato brigate rilasciato",
+   "doc_id": 2882,
+   "title": "Striscia di Gaza rapito giornalista Lorenzo Cremonesi 2005"
+  },
+  {
+   "id": "K068",
+   "query": "reggia pericolo inaccessibile sollevando",
+   "doc_id": 18988,
+   "title": "Chiusa la Domus Aurea a Roma: rischia di crollare"
+  },
+  {
+   "id": "K069",
+   "query": "valencia bayern inghilterra lilla",
+   "doc_id": 8483,
+   "title": "Calcio Champions League 2006-2007 fase a gironi 2° giornata"
+  },
+  {
+   "id": "K070",
+   "query": "norwich city manchester united",
+   "doc_id": 36248,
+   "title": "Premier League 2012-2013: il Chelsea solitario in testa"
+  },
+  {
+   "id": "K071",
+   "query": "domanda smania appaiano vostro",
+   "doc_id": 15337,
+   "title": "Napolitano: \"Le istituzioni non debbono mai essere una passerella\""
+  },
+  {
+   "id": "K072",
+   "query": "franchigia franchise ciascuna franchigie",
+   "doc_id": 28779,
+   "title": "Rugby: il comitato direttivo della Celtic League apre le porte all'Italia dalla stagione 2010-11"
+  },
+  {
+   "id": "K073",
+   "query": "birra confiscati calabria venduti",
+   "doc_id": 44754,
+   "title": "I prodotti provenienti dalle terre confiscate alla camorra in vendita anche a Rende"
+  },
+  {
+   "id": "K074",
+   "query": "giorgio gesto turba realizzatrice",
+   "doc_id": 24792,
+   "title": "Funerali oggi per Nugnes, l'assessore napoletano suicidatosi sabato"
+  },
+  {
+   "id": "K075",
+   "query": "beltrame atleti bresadola wilfried",
+   "doc_id": 4679,
+   "title": "Torino 2006: anche Pittin in gara l'11 febbraio"
+  },
+  {
+   "id": "K076",
+   "query": "júlio baptista abbondanzieri alves",
+   "doc_id": 14078,
+   "title": "Calcio, Coppa America: Brasile campione continentale per la 8ª volta"
+  },
+  {
+   "id": "K077",
+   "query": "battute stephens putin peccato",
+   "doc_id": 19890,
+   "title": "FT: Berlusconi è il sintomo della malattia, non la cura"
+  },
+  {
+   "id": "K078",
+   "query": "ruota apparecchiatura urna pallina",
+   "doc_id": 1435,
+   "title": "Contestata estrazione di Lotto e Superenalotto"
+  },
+  {
+   "id": "K079",
+   "query": "bolivia studiosi civiltà acre",
+   "doc_id": 28482,
+   "title": "Brasile: riemerge una città nella giungla, forse El Dorado"
+  },
+  {
+   "id": "K080",
+   "query": "libbre poterla ritrovamento tendopoli",
+   "doc_id": 23143,
+   "title": "Salerno, ordigno bellico nel centro: evacuate 5000 persone"
+  },
+  {
+   "id": "K081",
+   "query": "postale materiale pedo bacheca",
+   "doc_id": 16485,
+   "title": "Italia: operazione anti pedofilia, perquisizioni su quasi tutto il territorio nazionale"
+  },
+  {
+   "id": "K082",
+   "query": "team ranking inghilterra irlanda",
+   "doc_id": 52520,
+   "title": "Al via la Ryder Cup 2023"
+  },
+  {
+   "id": "K083",
+   "query": "navigatore stremo mediaticamente caterpillar",
+   "doc_id": 24938,
+   "title": "Alex Bellini si ritira dalla traversata oceanica"
+  },
+  {
+   "id": "K084",
+   "query": "gallesi staibano meta chapman",
+   "doc_id": 6084,
+   "title": "Rugby: l'Overmach Parma vince lo spareggio per la Heineken Cup"
+  },
+  {
+   "id": "K085",
+   "query": "fango adulto premonitore sommergendo",
+   "doc_id": 40299,
+   "title": "Tragedia nelle riserva naturale delle Macalube di Aragona: morti due fratellini"
+  },
+  {
+   "id": "K086",
+   "query": "utili previsioni cent miliardi",
+   "doc_id": 1316,
+   "title": "Risultato trimestre IBM deludente"
+  },
+  {
+   "id": "K087",
+   "query": "genoa moretti palacio milito",
+   "doc_id": 34542,
+   "title": "Calcio: l'Inter torna alla vittoria con Stramaccioni"
+  },
+  {
+   "id": "K088",
+   "query": "carilo monini materdomini edilesse",
+   "doc_id": 8558,
+   "title": "Pallavolo campionato italiano maschile Serie A2 2006-2007 5° giornata andata"
+  },
+  {
+   "id": "K089",
+   "query": "olmert tutu armi ordigni",
+   "doc_id": 20502,
+   "title": "Ultime da Israele e Gaza"
+  },
+  {
+   "id": "K090",
+   "query": "spettacolo laura suono scena",
+   "doc_id": 6530,
+   "title": "Teatro: Corte Sconta - Kol"
+  },
+  {
+   "id": "K091",
+   "query": "mike freeman capi omicidio",
+   "doc_id": 48966,
+   "title": "Arrestato Derek Chauvin, il poliziotto che ha ucciso George Floyd"
+  },
+  {
+   "id": "K092",
+   "query": "votazione accetteranno diventare venga",
+   "doc_id": 33652,
+   "title": "L'UNESCO riconosce la Palestina come Stato membro"
+  },
+  {
+   "id": "K093",
+   "query": "maresciallo frassanito settico trasferimento",
+   "doc_id": 5825,
+   "title": "Attentato di Nassiriya: è morto anche il carabiniere superstite"
+  },
+  {
+   "id": "K094",
+   "query": "occhio pupille opere monet",
+   "doc_id": 46817,
+   "title": "Lo strabismo avrebbe aiutato Leonardo da Vinci nella sua arte"
+  },
+  {
+   "id": "K095",
+   "query": "levy settantaduenne populista patriottico",
+   "doc_id": 24382,
+   "title": "Zambia: Rupiah Banda riconfermato presidente"
+  },
+  {
+   "id": "K096",
+   "query": "concertazione risorse acquisto pensioni",
+   "doc_id": 18118,
+   "title": "Il ministro Cesare Damiano: «Su salari serve pazienza»"
+  },
+  {
+   "id": "K097",
+   "query": "detriti frana trascinato frane",
+   "doc_id": 30939,
+   "title": "Maltempo: colata di fango nel Massese uccide madre e figlio"
+  },
+  {
+   "id": "K098",
+   "query": "persino decesso riverside vaschetta",
+   "doc_id": 30526,
+   "title": "Morto Leonard Skinner, fonte d'ispirazione per i Lynyrd Skynyrd"
+  },
+  {
+   "id": "K099",
+   "query": "assegnazione delegati expositions lombardia",
+   "doc_id": 19527,
+   "title": "Expo 2015: oggi la scelta tra Milano e Smirne"
+  },
+  {
+   "id": "K100",
+   "query": "hern ndez donati morleo",
+   "doc_id": 34538,
+   "title": "Calcio: prima vittoria stagionale in trasferta per il Palermo"
+  },
+  {
+   "id": "K101",
+   "query": "capsula porterà equipaggio umano",
+   "doc_id": 48926,
+   "title": "NASA: il lancio della missione SpaceX Demo 2"
+  },
+  {
+   "id": "K102",
+   "query": "guida iran coma teheran",
+   "doc_id": 27751,
+   "title": "Khamenei è morto?"
+  },
+  {
+   "id": "K103",
+   "query": "offerta otteneva cambio contanti",
+   "doc_id": 43436,
+   "title": "RCS: OPAS di Cairo supera l'OPA di Bonomi"
+  },
+  {
+   "id": "K104",
+   "query": "inferiore vecchio ordinamento biennio",
+   "doc_id": 46950,
+   "title": "Cambia l'alternanza scuola-lavoro: si riducono le ore e i fondi"
+  },
+  {
+   "id": "K105",
+   "query": "secolo evasioni evasione alfiero",
+   "doc_id": 14749,
+   "title": "Italia: i Monopoli di Stato hanno evaso 98 miliardi di tasse"
+  },
+  {
+   "id": "K106",
+   "query": "sentenze differenti noleggio conducente",
+   "doc_id": 47567,
+   "title": "Corte Costituzionale e Consiglio di Stato: la normativa regionale non deve determinare distorsioni nella concorrenza"
+  },
+  {
+   "id": "K107",
+   "query": "barack obama atlantico jersey",
+   "doc_id": 36427,
+   "title": "In arrivo l'uragano Sandy: massima allerta per la parte orientale degli USA"
+  },
+  {
+   "id": "K108",
+   "query": "fascia nera musetto schumacher",
+   "doc_id": 1027,
+   "title": "Papa morto, Ferrari listate a lutto"
+  },
+  {
+   "id": "K109",
+   "query": "esplosa ciglio provocato ferimento",
+   "doc_id": 6101,
+   "title": "Baghdad: esplodono due bombe"
+  },
+  {
+   "id": "K110",
+   "query": "nonché serale atalanta sampdoria",
+   "doc_id": 36979,
+   "title": "Calcio, Serie A 2012-2013: 22ª giornata"
+  },
+  {
+   "id": "K111",
+   "query": "brest vincono troyes marsiglia",
+   "doc_id": 36495,
+   "title": "Ligue 1 2012-2013: il PSG rimedia la prima sconfitta"
+  },
+  {
+   "id": "K112",
+   "query": "californiane nuovissimo prodotto pollici",
+   "doc_id": 28632,
+   "title": "Apple: oggi la presentazione dell'iSlate"
+  },
+  {
+   "id": "K113",
+   "query": "vicepresidenti questori segretari voti",
+   "doc_id": 37371,
+   "title": "Eletto il Consiglio e l'Ufficio di presidenza della XVII Legislatura"
+  },
+  {
+   "id": "K114",
+   "query": "planetario pianeti sistemi planetari",
+   "doc_id": 30141,
+   "title": "Scoperto un sistema extra-solare"
+  },
+  {
+   "id": "K115",
+   "query": "giovedì atalanta sampdoria autoreti",
+   "doc_id": 36454,
+   "title": "Calcio, Serie A 2012-2013: 10ª giornata"
+  },
+  {
+   "id": "K116",
+   "query": "occupano osasuna preliminare semifinali",
+   "doc_id": 12801,
+   "title": "Coppa UEFA 2006-2007 quarti di finale ritorno"
+  },
+  {
+   "id": "K117",
+   "query": "sceicco qaeda scioperare gaza",
+   "doc_id": 24706,
+   "title": "Al Zawahiri esorta allo sciopero e si esprime sulla crisi economica"
+  },
+  {
+   "id": "K118",
+   "query": "manager olivetti riposizionamento contribuì",
+   "doc_id": 51888,
+   "title": "Morto Elserino Piol"
+  },
+  {
+   "id": "K119",
+   "query": "spostamento radio fusione lineare",
+   "doc_id": 46439,
+   "title": "Chiusure di canali lineari in Danimarca e non solo"
+  },
+  {
+   "id": "K120",
+   "query": "scozia meta montgomery contepomi",
+   "doc_id": 15954,
+   "title": "Rugby Coppa del Mondo 2007: Argentina - Sud Africa l'altra semifinale"
+  },
+  {
+   "id": "K121",
+   "query": "mezzogiorno spesa costo affitti",
+   "doc_id": 27027,
+   "title": "Italia: al sud i prezzi più bassi del 16,5%"
+  },
+  {
+   "id": "K122",
+   "query": "fromentine noirmoutier champs élysées",
+   "doc_id": 1576,
+   "title": "Il 2 luglio partirà il Tour de France"
+  },
+  {
+   "id": "K123",
+   "query": "anziana mangiava cadavere buttarla",
+   "doc_id": 38799,
+   "title": "Signora belga dormiva con la mummia del marito"
+  },
+  {
+   "id": "K124",
+   "query": "spotify worlds collide evanescence",
+   "doc_id": 48710,
+   "title": "Within Temptation: annunciato il prossimo singolo"
+  },
+  {
+   "id": "K125",
+   "query": "novara cesena virtus lanciano",
+   "doc_id": 42719,
+   "title": "Calcio, Serie B 2015-2016: 25ª giornata"
+  },
+  {
+   "id": "K126",
+   "query": "trimestre aggiornati tasso periodi",
+   "doc_id": 24991,
+   "title": "Istat: cresce disoccupazione in Italia"
+  },
+  {
+   "id": "K127",
+   "query": "tomaso scompenso innsbruck cremato",
+   "doc_id": 17998,
+   "title": "L'architetto Ettore Sottsass è morto"
+  },
+  {
+   "id": "K128",
+   "query": "contrade torre contrada zedde",
+   "doc_id": 7676,
+   "title": "Palio di Siena, disputate quarta e quinta prova"
+  },
+  {
+   "id": "K129",
+   "query": "emozione unanime rivolgendosi rapporto",
+   "doc_id": 7305,
+   "title": "Nicola Mancino è il nuovo Vicepresidente del Csm"
+  },
+  {
+   "id": "K130",
+   "query": "napolitano addolora rammarico dolore",
+   "doc_id": 20435,
+   "title": "Morto il giornalista Paolo Giuntella"
+  },
+  {
+   "id": "K131",
+   "query": "scioperano muovendo sindacati aumento",
+   "doc_id": 3937,
+   "title": "Italia: oggi sciopero di 8 ore dei metalmeccanici"
+  },
+  {
+   "id": "K132",
+   "query": "dragon lago rifacimento campus",
+   "doc_id": 42714,
+   "title": "Hangzhou: preparazioni per il G20"
+  },
+  {
+   "id": "K133",
+   "query": "band youtube truth tour",
+   "doc_id": 48678,
+   "title": "Evanescence: uscito il nuovo singolo"
+  },
+  {
+   "id": "K134",
+   "query": "avellino albinoleffe triestina ravenna",
+   "doc_id": 19265,
+   "title": "Calcio Italia campionato nazionale Serie B 2007-2008 9ª giornata ritorno"
+  },
+  {
+   "id": "K135",
+   "query": "arsenal southampton reading liverpool",
+   "doc_id": 36492,
+   "title": "Premier League 2012-2013: il Manchester United in testa al torneo"
+  },
+  {
+   "id": "K136",
+   "query": "siri leocorno zedde giraffa",
+   "doc_id": 29635,
+   "title": "Va alla Contrada della Torre la quarta prova del Palio di Provenzano"
+  },
+  {
+   "id": "K137",
+   "query": "ranking safin serbo agevolmente",
+   "doc_id": 21057,
+   "title": "Terza giornata di Wimbledon 2008: bene Federer, Ðoković fuori"
+  },
+  {
+   "id": "K138",
+   "query": "economia bankitalia spiegata bollettino",
+   "doc_id": 5154,
+   "title": "Pininfarina: senza riforme adeguate, l'Italia presto fuori dal G8"
+  },
+  {
+   "id": "K139",
+   "query": "camonica territorio lombardo veneto",
+   "doc_id": 27192,
+   "title": "Cultura: Borno si riscopre nel Catasto del 1853"
+  },
+  {
+   "id": "K140",
+   "query": "brasile break hiroshima toyama",
+   "doc_id": 33744,
+   "title": "Coppa del Mondo di volley femminile: si conclude il terzo round"
+  },
+  {
+   "id": "K141",
+   "query": "giappone four parziali affronteranno",
+   "doc_id": 31046,
+   "title": "Mondiale di volley femminile: Russia e Brasile in finale. Italia-Turchia per il quinto posto"
+  },
+  {
+   "id": "K142",
+   "query": "bindi conviventi convivenza anagrafe",
+   "doc_id": 11622,
+   "title": "Unioni di fatto: il Governo approva i \"Dico\""
+  },
+  {
+   "id": "K143",
+   "query": "cotticelli dottore insorgono affermazioni",
+   "doc_id": 49687,
+   "title": "Calabria: nominato nuovo commissario per la sanità"
+  },
+  {
+   "id": "K144",
+   "query": "albino leffe giampaolo bucchi",
+   "doc_id": 6418,
+   "title": "Calcio Italia campionato nazionale Serie B 2006-2007 1° giornata andata"
+  },
+  {
+   "id": "K145",
+   "query": "calciatore azzurra scomparso campioni",
+   "doc_id": 31326,
+   "title": "È morto Enzo Bearzot"
+  },
+  {
+   "id": "K146",
+   "query": "viadotto polcevera stimare impatti",
+   "doc_id": 46669,
+   "title": "Il crollo del ponte Morandi fa perdere due milioni di euro al giorno al settore dell'autotrasporto"
+  },
+  {
+   "id": "K147",
+   "query": "specialisti dislocate morozov cimeli",
+   "doc_id": 29361,
+   "title": "Campagna italiana in Russia, ritrovate 5 piastrine."
+  },
+  {
+   "id": "K148",
+   "query": "hove albion city peterborough",
+   "doc_id": 36636,
+   "title": "Vittorie importanti per Millwall, M'Boro, Brighton e Watford"
+  },
+  {
+   "id": "K149",
+   "query": "montepremi riporto vincitori stella",
+   "doc_id": 25218,
+   "title": "Italia: concorso n. 2/2009 del SuperEnalotto"
+  },
+  {
+   "id": "K150",
+   "query": "raggruppamento tiro ribaltano divario",
+   "doc_id": 36102,
+   "title": "UEFA Champions League 2012-2013: inizia la fase a gironi"
+  },
+  {
+   "id": "K151",
+   "query": "condominio salario triplice autoambulanze",
+   "doc_id": 51379,
+   "title": "Sparatoria a Roma, morte tre persone"
+  },
+  {
+   "id": "K152",
+   "query": "solenni esortava spronare ultimare",
+   "doc_id": 23593,
+   "title": "Berzo Inferiore festeggia l'anniversario dell'apparizione della Madonna"
+  },
+  {
+   "id": "K153",
+   "query": "lecco vercelli penalizzazione irpef",
+   "doc_id": 8164,
+   "title": "Calcio Italia campionato nazionale Serie C2 girone A 2006-2007 2° giornata ritorno"
+  },
+  {
+   "id": "K154",
+   "query": "montepremi riporto vincitori stella",
+   "doc_id": 25002,
+   "title": "Italia: concorso n. 152/2008 del SuperEnalotto"
+  },
+  {
+   "id": "K155",
+   "query": "moreni rebellin wegmann luca",
+   "doc_id": 18983,
+   "title": "Ciclismo: Bettini domina il Giro di Lombardia"
+  },
+  {
+   "id": "K156",
+   "query": "neopromosso padroni duff dyer",
+   "doc_id": 35698,
+   "title": "Premier League 2012-2013: cinquine per lo Swansea e il Fulham"
+  },
+  {
+   "id": "K157",
+   "query": "ateo religioni cose fede",
+   "doc_id": 17274,
+   "title": "Giorgio Villella: il futuro del UAAR, wiki e l'ateismo"
+  },
+  {
+   "id": "K158",
+   "query": "fermate tiburtina battaglia morgagni",
+   "doc_id": 49962,
+   "title": "Roma: proseguono i lavori a Policlinico e Castro Pretorio"
+  },
+  {
+   "id": "K159",
+   "query": "triestina albino leffe bojinov",
+   "doc_id": 6420,
+   "title": "Calcio Italia campionato nazionale Serie B 2006-2007 3° giornata andata"
+  },
+  {
+   "id": "K160",
+   "query": "banche incorporazione sportelli capitario",
+   "doc_id": 12458,
+   "title": "Fusione BPU-Banca Lombarda, gli azionisti dicono sì"
+  },
+  {
+   "id": "K161",
+   "query": "furti baby gang terrorismo",
+   "doc_id": 7643,
+   "title": "Viminale: meno delitti nel primo semestre 2006"
+  },
+  {
+   "id": "K162",
+   "query": "incitano reati commessi deplorevoli",
+   "doc_id": 25578,
+   "title": "Il ministro degli Esteri romeno: «Nel governo italiano c'è chi incita alla xenofobia»"
+  },
+  {
+   "id": "K163",
+   "query": "suprema bimbo bambino tribunale",
+   "doc_id": 24138,
+   "title": "Alt della Cassazione: niente nomi fantasiosi per i neonati"
+  },
+  {
+   "id": "K164",
+   "query": "minorenni minori sessuali agenti",
+   "doc_id": 46936,
+   "title": "Pedopornografia: arrestato insegnante a Palermo"
+  },
+  {
+   "id": "K165",
+   "query": "ovale marmo panorama centimetri",
+   "doc_id": 48270,
+   "title": "Turi Simeti dona una sua scultura ad Alcamo"
+  },
+  {
+   "id": "K166",
+   "query": "space nodo spaziali harmony",
+   "doc_id": 16702,
+   "title": "Ventitreesima missione per la costruzione della ISS, anche un italiano in orbita"
+  },
+  {
+   "id": "K167",
+   "query": "edwina knight christopher creatura",
+   "doc_id": 28394,
+   "title": "Regno Unito: è morta l'anatra più vecchia del paese"
+  },
+  {
+   "id": "K168",
+   "query": "dicastero titolare priva ripetuti",
+   "doc_id": 30656,
+   "title": "Ministero dello Sviluppo Economico: l'interim di Berlusconi potrebbe finire oggi. Il testimone a Paolo Romani"
+  },
+  {
+   "id": "K169",
+   "query": "middlesbrough cristian shalke levski",
+   "doc_id": 17309,
+   "title": "Calcio Coppa UEFA 2005-2006 ottavi di finale ritorno"
+  },
+  {
+   "id": "K170",
+   "query": "marito regista vecchietta ballerine",
+   "doc_id": 24086,
+   "title": "Madonna \"vittima\" di Guy Ritchie da otto anni di matrimonio"
+  },
+  {
+   "id": "K171",
+   "query": "poetessa osseo valse commendatore",
+   "doc_id": 27933,
+   "title": "È morta Alda Merini"
+  },
+  {
+   "id": "K172",
+   "query": "niemeyer break wimbledon garros",
+   "doc_id": 27081,
+   "title": "Tennis, Rogers Cup: esordio senza problemi per Federer"
+  },
+  {
+   "id": "K173",
+   "query": "tutt store apple interruzione",
+   "doc_id": 22647,
+   "title": "Songs for Tibet: il governo cinese blocca anche iTunes"
+  },
+  {
+   "id": "K174",
+   "query": "pescara rigori mastronunzio sansovini",
+   "doc_id": 14486,
+   "title": "Calcio Italia campionato nazionale Serie C1 girone B 2007-2008"
+  },
+  {
+   "id": "K175",
+   "query": "impianto taranto azoto utic",
+   "doc_id": 13091,
+   "title": "Castellaneta, anestetico invece di ossigeno: morti in ospedale"
+  },
+  {
+   "id": "K176",
+   "query": "emittente rotterdam formatasi sint",
+   "doc_id": 48033,
+   "title": "Eurovision Song Contest 2020: gli Hooverphonic per il Belgio"
+  },
+  {
+   "id": "K177",
+   "query": "sentirà talebani kandahar sfregiato",
+   "doc_id": 24676,
+   "title": "Afghanistan: Karzai vuole calendario per il ritiro. Arrestati 10 sfregiatori di ragazze"
+  },
+  {
+   "id": "K178",
+   "query": "weekend berdych oceania spareggi",
+   "doc_id": 34586,
+   "title": "Coppa Davis: Spagna, USA, Rep. Ceca e Argentina in semifinale"
+  },
+  {
+   "id": "K179",
+   "query": "additivi antiossidanti stabilimento irrevocabile",
+   "doc_id": 13572,
+   "title": "Chemtura annuncia una ristrutturazione: 165 posti di lavoro eliminati in Italia"
+  },
+  {
+   "id": "K180",
+   "query": "zardari benazir asif musharraf",
+   "doc_id": 17981,
+   "title": "Pakistan: il figlio della Bhutto è il nuovo leader del PPP, verso un rinvio delle elezioni"
+  },
+  {
+   "id": "K181",
+   "query": "deliberazioni rileverà onorevoli informatizzazione",
+   "doc_id": 24451,
+   "title": "Parlamento: a febbraio finisce l'era dei «pianisti»"
+  },
+  {
+   "id": "K182",
+   "query": "manovra prodi ricerca norme",
+   "doc_id": 8869,
+   "title": "Finanziaria: da Vicenza protesta l'opposizione, critiche da Montezemolo e Mussi"
+  },
+  {
+   "id": "K183",
+   "query": "anoressia bulimia patologie ossessionato",
+   "doc_id": 12850,
+   "title": "Roma: dal 2008 casa di cura per anoressici e bulimici"
+  },
+  {
+   "id": "K184",
+   "query": "indiano latorre indiane riportarli",
+   "doc_id": 39418,
+   "title": "Caso Marò, India: «Saranno processati con le nostre leggi»"
+  },
+  {
+   "id": "K185",
+   "query": "arresti indiscriminati pagoda estero",
+   "doc_id": 15585,
+   "title": "Myanmar: il regime a caccia di reporter stranieri, due morti"
+  },
+  {
+   "id": "K186",
+   "query": "battuto brasiliani marcio gomes",
+   "doc_id": 22529,
+   "title": "Olimpiadi 2008, Beach volley maschile: vincono gli Stati Uniti"
+  },
+  {
+   "id": "K187",
+   "query": "mastrogiacomo talebani decapitazione karzai",
+   "doc_id": 12782,
+   "title": "Nashkbandi Adjmal è stato decapitato dai Taliban"
+  },
+  {
+   "id": "K188",
+   "query": "marina militare unità navali",
+   "doc_id": 24633,
+   "title": "La Spezia: ultimo ammainabandiera per la Nave Carabiniere, in disarmo dopo 40 anni"
+  },
+  {
+   "id": "K189",
+   "query": "grenadine equipaggio abbordaggio evasiva",
+   "doc_id": 24252,
+   "title": "Somalia: nave di armatore italiano attaccata dai pirati"
+  },
+  {
+   "id": "K190",
+   "query": "operaio elevatore monte savino",
+   "doc_id": 46095,
+   "title": "In Toscana ancora incidenti sul lavoro: due morti"
+  },
+  {
+   "id": "K191",
+   "query": "client file personal peer",
+   "doc_id": 15715,
+   "title": "P2P: Multe galattiche per Discotequezone"
+  },
+  {
+   "id": "K192",
+   "query": "senatore muri gerusalemme israele",
+   "doc_id": 21756,
+   "title": "Obama ripercorre i passi di Kennedy a Berlino: «USA ed Europa unite per la Libertà»"
+  },
+  {
+   "id": "K193",
+   "query": "trasmesso virus isolato ceppo",
+   "doc_id": 3220,
+   "title": "Scoperto il primo caso di trasmissione di influenza aviaria tra uomini"
+  },
+  {
+   "id": "K194",
+   "query": "seggi affluenza dario moratti",
+   "doc_id": 4523,
+   "title": "Ferrante vince le primarie dell'Unione a Milano"
+  },
+  {
+   "id": "K195",
+   "query": "sopprimere soppressione enna sindaci",
+   "doc_id": 8648,
+   "title": "Finanziaria, bufera sugli Enti Locali: 13 Province a rischio, tagli ai Comuni"
+  },
+  {
+   "id": "K196",
+   "query": "film nolan miglior attrice",
+   "doc_id": 52960,
+   "title": "Oscar 2024, trionfo per Oppenheimer"
+  },
+  {
+   "id": "K197",
+   "query": "nove monticelli verificarono improprie",
+   "doc_id": 17397,
+   "title": "Genova: arresti per gli scontri prima del derby"
+  },
+  {
+   "id": "K198",
+   "query": "stazione emozionata astronauta rappresentiamo",
+   "doc_id": 51116,
+   "title": "Samantha Cristoforetti è la prima donna europea comandante dell'ISS"
+  },
+  {
+   "id": "K199",
+   "query": "personali script utenti pagamento",
+   "doc_id": 47178,
+   "title": "Hackerato il sito Vision Direct, a rischio migliaia di account"
+  },
+  {
+   "id": "K200",
+   "query": "triplice borgese chiarimento fucile",
+   "doc_id": 35955,
+   "title": "Mattanza di Rizziconi. Trovato il colpevole, è incensurato"
+  },
+  {
+   "id": "K201",
+   "query": "singolo estate album brano",
+   "doc_id": 15090,
+   "title": "I Negramaro vincono il Festivalbar 2007"
+  },
+  {
+   "id": "K202",
+   "query": "commenti commissario deficit moneta",
+   "doc_id": 18291,
+   "title": "Unione Europea: in Italia positivi i conti pubblici del 2007"
+  },
+  {
+   "id": "K203",
+   "query": "forme pazienti frequenti lieve",
+   "doc_id": 32194,
+   "title": "Sclerosi multipla: disponibile a breve un nuovo farmaco"
+  },
+  {
+   "id": "K204",
+   "query": "uragano imperversare miglia texas",
+   "doc_id": 23223,
+   "title": "Nave in difficoltà nel golfo del Messico"
+  },
+  {
+   "id": "K205",
+   "query": "interporto accoglienza espletamento smistamento",
+   "doc_id": 50286,
+   "title": "Afghanistan: uomini, donne e bambini ospitati ad Avezzano"
+  },
+  {
+   "id": "K206",
+   "query": "martin hartmann concentramento recato",
+   "doc_id": 15372,
+   "title": "Sopravvissuto all'Olocausto scopre vicino appartenuto alle SS"
+  },
+  {
+   "id": "K207",
+   "query": "pacifica potenze condoleeza rice",
+   "doc_id": 20670,
+   "title": "La Germania contraria all'entrata dell'Italia nelle trattative dei \"5+1\" con Teheran"
+  },
+  {
+   "id": "K208",
+   "query": "castellamare cardiovascolare degenza cardiocircolatorio",
+   "doc_id": 9027,
+   "title": "Morto il cantante Mario Merola"
+  },
+  {
+   "id": "K209",
+   "query": "cronometro gesink armstrong martin",
+   "doc_id": 29496,
+   "title": "Ciclismo: Fränk Schleck vince il Giro di Svizzera 2010"
+  },
+  {
+   "id": "K210",
+   "query": "canzone fiorella mannoia meta",
+   "doc_id": 44778,
+   "title": "Francesco Gabbani vince Sanremo 2017"
+  },
+  {
+   "id": "K211",
+   "query": "enne spatafora mafioso latitanza",
+   "doc_id": 7468,
+   "title": "Arrestati i postini dei \"pizzini\" di Provenzano"
+  },
+  {
+   "id": "K212",
+   "query": "renault ferrari honda cosworth",
+   "doc_id": 8598,
+   "title": "Schumacher domina sotto la pioggia in Cina"
+  },
+  {
+   "id": "K213",
+   "query": "trenitalia pendolari intercity treni",
+   "doc_id": 4370,
+   "title": "Italia ritardi e disagi nelle ferrovie 2006"
+  },
+  {
+   "id": "K214",
+   "query": "topalov kramnik bagno giocatori",
+   "doc_id": 8595,
+   "title": "Mondiale di scacchi nel caos"
+  },
+  {
+   "id": "K215",
+   "query": "loeb hirvonen sordo ford",
+   "doc_id": 24895,
+   "title": "Rally: Citroën campione del mondo costruttori"
+  },
+  {
+   "id": "K216",
+   "query": "movimento renzi richiamo regolamento",
+   "doc_id": 39426,
+   "title": "Nuovo scontro tra Boldrini e il M5S"
+  },
+  {
+   "id": "K217",
+   "query": "richiesto redigere corredato liquidazione",
+   "doc_id": 49860,
+   "title": "Roma: approvati i bilanci di Roma Metropolitane dal 2016 al 2018"
+  },
+  {
+   "id": "K218",
+   "query": "banca matteotti fratello sacrifici",
+   "doc_id": 15991,
+   "title": "Ucciso tabaccaio a Napoli, stava andando a versare l'incasso"
+  },
+  {
+   "id": "K219",
+   "query": "attrice cardiaco ragazze mile",
+   "doc_id": 28235,
+   "title": "È deceduta Brittany Murphy, aveva 32 anni"
+  },
+  {
+   "id": "K220",
+   "query": "firmati berlino cancelliera barroso",
+   "doc_id": 12603,
+   "title": "Giubileo della firma dei Trattati di Roma per la costituzione della CEE"
+  },
+  {
+   "id": "K221",
+   "query": "ricorreva anticipati vivacemente stanziamenti",
+   "doc_id": 46443,
+   "title": "Il decreto Milleproroghe è legge"
+  },
+  {
+   "id": "K222",
+   "query": "progetto general contractor preoccupazione",
+   "doc_id": 5949,
+   "title": "Il governo Prodi cerca una soluzione per il Ponte sullo Stretto di Messina"
+  },
+  {
+   "id": "K223",
+   "query": "fermo rescisso ragazzo violentarono",
+   "doc_id": 8714,
+   "title": "Americana violentata a Roma: è stato un calciatore"
+  },
+  {
+   "id": "K224",
+   "query": "riprendeva inchiesta uploader rogatorie",
+   "doc_id": 12025,
+   "title": "Foto del Papa su Indymedia, la Procura chiede l'archiviazione del caso"
+  },
+  {
+   "id": "K225",
+   "query": "letta chigi tweet vengo",
+   "doc_id": 39321,
+   "title": "Governo, il giorno del giudizio"
+  },
+  {
+   "id": "K226",
+   "query": "napolitano alemanno armate reparti",
+   "doc_id": 20663,
+   "title": "Festa della Repubblica, le celebrazioni a Roma per il 62° anniversario"
+  },
+  {
+   "id": "K227",
+   "query": "nebbia rendeva ripetuto romagnoli",
+   "doc_id": 25579,
+   "title": "Calcio Italia campionato nazionale Serie B 2008-2009 Recupero 2ª giornata ritorno"
+  },
+  {
+   "id": "K228",
+   "query": "stazione borgo ferrovie minuto",
+   "doc_id": 29397,
+   "title": "Rovato: riaperta la linea per Bornato e Iseo"
+  },
+  {
+   "id": "K229",
+   "query": "atletica lontano immaginavo lancio",
+   "doc_id": 14061,
+   "title": "Giavellotto colpisce atleta al Golden Gala di Roma"
+  },
+  {
+   "id": "K230",
+   "query": "sindacati offerta piano fantozzi",
+   "doc_id": 23361,
+   "title": "Battute finali per l'Alitalia"
+  },
+  {
+   "id": "K231",
+   "query": "radio internet scautismo jota",
+   "doc_id": 16582,
+   "title": "500 000 scout da tutto il mondo fanno un campo senza spostarsi da casa"
+  },
+  {
+   "id": "K232",
+   "query": "caprera bicentenario classificatasi pausania",
+   "doc_id": 13163,
+   "title": "Giro d'Italia 2007: prima tappa"
+  },
+  {
+   "id": "K233",
+   "query": "medaglia zabelinskaja atlete medaglie",
+   "doc_id": 35466,
+   "title": "Giochi olimpici 2012: a Marianne Vos l'oro nella gara in linea di ciclismo su strada"
+  },
+  {
+   "id": "K234",
+   "query": "fermo solaris trollino mezzi",
+   "doc_id": 49225,
+   "title": "Roma: tornano in servizio i filobus BredaMenarini"
+  },
+  {
+   "id": "K235",
+   "query": "montepremi riporto vincitori stella",
+   "doc_id": 27972,
+   "title": "Italia: concorso n. 134/2009 del SuperEnalotto"
+  },
+  {
+   "id": "K236",
+   "query": "seicentesco donato biblioteca neofascismo",
+   "doc_id": 23885,
+   "title": "Cedegolo: inaugurata «Casa Panzerini»"
+  },
+  {
+   "id": "K237",
+   "query": "alonso hamilton iridata raikkonen",
+   "doc_id": 5198,
+   "title": "Formula 1, Gran Premio di Turchia 2007, doppietta per la Ferrari"
+  },
+  {
+   "id": "K238",
+   "query": "atleti stile libero classe",
+   "doc_id": 53303,
+   "title": "Al via i Giochi Paralimpici, gli azzurri in gara oggi"
+  },
+  {
+   "id": "K239",
+   "query": "kenya giappone dominicana tokyo",
+   "doc_id": 33762,
+   "title": "Coppa del Mondo di volley femminile: Italia campione"
+  },
+  {
+   "id": "K240",
+   "query": "soltanto possa declino disperate",
+   "doc_id": 17934,
+   "title": "Dini attacca Prodi: «Al Senato non ci sono i numeri per governare»"
+  },
+  {
+   "id": "K241",
+   "query": "ance rapporto impatto vantaggi",
+   "doc_id": 50847,
+   "title": "Nomisma: il superbonus ha generato valore economico e va riconfermato"
+  },
+  {
+   "id": "K242",
+   "query": "ring pugili avversario watson",
+   "doc_id": 42925,
+   "title": "Pugilato: drammatica sconfitta di Blackwell contro Chris Eubank Jr."
+  },
+  {
+   "id": "K243",
+   "query": "soprintendenza galleria popstar louvre",
+   "doc_id": 35240,
+   "title": "Uffizi, polemiche sul noleggio delle sale"
+  },
+  {
+   "id": "K244",
+   "query": "meta stanojevic bergamasco carter",
+   "doc_id": 15091,
+   "title": "Rugby Coppa del Mondo 2007: Nuova Zelanda - Italia 76 - 14"
+  },
+  {
+   "id": "K245",
+   "query": "corea sambodromo janeiro ellison",
+   "doc_id": 43837,
+   "title": "Giochi olimpici 2016: si completa il dominio sudcoreano nel tiro con l'arco con l'individuale maschile"
+  },
+  {
+   "id": "K246",
+   "query": "cuba emorragia salute cubano",
+   "doc_id": 7298,
+   "title": "Fidel Castro ricoverato: i suoi poteri trasferiti al fratello"
+  },
+  {
+   "id": "K247",
+   "query": "udinese inter gonzalez foti",
+   "doc_id": 4546,
+   "title": "Calcio Coppa Italia 2006 quarti di finale ritorno"
+  },
+  {
+   "id": "K248",
+   "query": "espulso file doppietta helsingborg",
+   "doc_id": 36515,
+   "title": "UEFA Europa League 2012-2013: la quarta giornata della fase a gironi"
+  },
+  {
+   "id": "K249",
+   "query": "rachele bruni piastra brasiliana",
+   "doc_id": 43863,
+   "title": "Giochi olimpici 2016: Aurelie Muller squalificata nei 10 km di nuoto, salto in classifica per Italia e Brasile"
+  },
+  {
+   "id": "K250",
+   "query": "culto passeggiata costruire impuro",
+   "doc_id": 15206,
+   "title": "Calderoli: Maiale-day contro la costruzione della moschea di Bologna"
+  },
+  {
+   "id": "K251",
+   "query": "rover pannelli robot nasa",
+   "doc_id": 15141,
+   "title": "Marte: tornano in funzione Spirit e Opportunity"
+  },
+  {
+   "id": "K252",
+   "query": "banlieu alliot fumando sentito",
+   "doc_id": 16929,
+   "title": "Parigi: un morto nell'esplosione di una conduttura del gas"
+  },
+  {
+   "id": "K253",
+   "query": "stranieri passino taglio straniero",
+   "doc_id": 7363,
+   "title": "Svolta sulla cittadinanza italiana: si potrà ottenere in cinque anni"
+  },
+  {
+   "id": "K254",
+   "query": "holmes movie fucile semiautomatico",
+   "doc_id": 35351,
+   "title": "Sparatoria alla prima di Batman, 12 le vittime"
+  },
+  {
+   "id": "K255",
+   "query": "diramazione santhià bambini gita",
+   "doc_id": 13139,
+   "title": "Vercelli, si ribalta un autobus. Morto un bambino"
+  },
+  {
+   "id": "K256",
+   "query": "campione depressione luoghi solitudine",
+   "doc_id": 15140,
+   "title": "Italiani depressi: colpa alle case, chiese e uffici"
+  },
+  {
+   "id": "K257",
+   "query": "scudetto recco brescia canottieri",
+   "doc_id": 41784,
+   "title": "Pallanuoto, Serie A1 maschile 2014-2015: Playoff, Finali Gara 1"
+  },
+  {
+   "id": "K258",
+   "query": "town city bristol cardiff",
+   "doc_id": 36505,
+   "title": "Glenn Murray trascina il Crystal Palace in testa alla Championship"
+  },
+  {
+   "id": "K259",
+   "query": "messina ventola cambiasso bianchi",
+   "doc_id": 6290,
+   "title": "Calcio Italia campionato nazionale Serie A 2006-2007 1° giornata andata"
+  },
+  {
+   "id": "K260",
+   "query": "licenza generica opere dirimere",
+   "doc_id": 12239,
+   "title": "Lanciata la versione 3.0 delle licenze Creative Commons"
+  },
+  {
+   "id": "K261",
+   "query": "parlamentare astensione civica dimettersi",
+   "doc_id": 38571,
+   "title": "Rosy Bindi presidente della Commissione Antimafia"
+  },
+  {
+   "id": "K262",
+   "query": "megattere ghiaccio lieberman riduzione",
+   "doc_id": 21034,
+   "title": "Cambiamenti climatici, balene antartiche a rischio"
+  },
+  {
+   "id": "K263",
+   "query": "cimone banca luigibacchi gabeca",
+   "doc_id": 8305,
+   "title": "Pallavolo campionato italiano maschile Serie A1 2006-2007 2° giornata andata"
+  },
+  {
+   "id": "K264",
+   "query": "riccò maglia gialla salita",
+   "doc_id": 21551,
+   "title": "Tour de France 2008: sesta tappa"
+  },
+  {
+   "id": "K265",
+   "query": "calunnia giletti ricorso riesame",
+   "doc_id": 53484,
+   "title": "Salvatore Baiardo è stato arrestato"
+  },
+  {
+   "id": "K266",
+   "query": "assegnato comitato sforzi diplomazia",
+   "doc_id": 27712,
+   "title": "A Barack Obama il Nobel per la pace"
+  },
+  {
+   "id": "K267",
+   "query": "ragazzino orientamento compagni shoemaker",
+   "doc_id": 46275,
+   "title": "Bambino di 9 anni si toglie la vita dopo aver rivelato la sua omosessualità"
+  },
+  {
+   "id": "K268",
+   "query": "regolare classificata qualificandosi acquachiara",
+   "doc_id": 41682,
+   "title": "Pallanuoto, Serie A1 maschile 2014-2015: Playoff, Quarti di finale Gara 2"
+  },
+  {
+   "id": "K269",
+   "query": "napolitano renzi autonomie dichiara",
+   "doc_id": 39334,
+   "title": "Consultazioni al Quirinale per il nuovo Governo"
+  },
+  {
+   "id": "K270",
+   "query": "robert john rune ahmet",
+   "doc_id": 15184,
+   "title": "I Led Zeppelin si riuniscono: concerto previsto per il 13 novembre"
+  },
+  {
+   "id": "K271",
+   "query": "collezioni antichità spazio arte",
+   "doc_id": 51071,
+   "title": "Milano: apre il Museo della Fondazione Rovati"
+  },
+  {
+   "id": "K272",
+   "query": "montepremi riporto vincitori stella",
+   "doc_id": 22693,
+   "title": "Italia: concorso n. 103/2008 del SuperEnalotto"
+  },
+  {
+   "id": "K273",
+   "query": "armate talebani richards soldati",
+   "doc_id": 12091,
+   "title": "Generale USA a capo delle forze NATO in Afghanistan"
+  },
+  {
+   "id": "K274",
+   "query": "montepremi jackpot riporto vincitori",
+   "doc_id": 27836,
+   "title": "Italia: concorso n. 88/2009 del Totocalcio"
+  },
+  {
+   "id": "K275",
+   "query": "università petizione conoscenza wikipedia",
+   "doc_id": 17634,
+   "title": "Renzo Davoli: software libero e libertà intellettuale"
+  },
+  {
+   "id": "K276",
+   "query": "coglioni labbra scusa rozzo",
+   "doc_id": 5395,
+   "title": "Berlusconi dà del \"coglione\" agli elettori di sinistra"
+  },
+  {
+   "id": "K277",
+   "query": "imprese dipendenti professioni prevalentemente",
+   "doc_id": 24833,
+   "title": "Economia: Italia spaccata sulle retribuzioni"
+  },
+  {
+   "id": "K278",
+   "query": "libro fallimentare concorsuali creditori",
+   "doc_id": 29275,
+   "title": "Federconsorzi: Processo a un'idea o a una bancarotta?"
+  },
+  {
+   "id": "K279",
+   "query": "provincie raggruppati irrilevante ambita",
+   "doc_id": 18261,
+   "title": "Qualità della vita in Italia: Trento prima, il Mezzogiorno arranca"
+  },
+  {
+   "id": "K280",
+   "query": "toscani ambientali sodalizio tessili",
+   "doc_id": 49907,
+   "title": "Italia, rifiuti: scoperto traffico illecito dalla Campania alla Toscana"
+  },
+  {
+   "id": "K281",
+   "query": "esagerato missilistico armi nucleari",
+   "doc_id": 11676,
+   "title": "Putin critica la politica estera degli Stati Uniti"
+  },
+  {
+   "id": "K282",
+   "query": "stazione tifosi russi manutenzione",
+   "doc_id": 46824,
+   "title": "Crolla scala mobile nella metro di Roma: 24 feriti. Dubbi sulle cause"
+  },
+  {
+   "id": "K283",
+   "query": "sclerosi multipla editorialista espresso",
+   "doc_id": 13936,
+   "title": "Morto il giornalista Claudio Rinaldi"
+  },
+  {
+   "id": "K284",
+   "query": "violenza interdetta inesistente tanta",
+   "doc_id": 30753,
+   "title": "Napoli: donna segregata per 32 anni dal padre per simularne l'invalidità e riscuoterne la pensione"
+  },
+  {
+   "id": "K285",
+   "query": "opponendo magrin ordinanza provvederemo",
+   "doc_id": 25256,
+   "title": "Temù: museo della Grande Guerra contro il comune"
+  },
+  {
+   "id": "K286",
+   "query": "piano dipartimento nypd fondi",
+   "doc_id": 49145,
+   "title": "Minneapolis: maggioranza del consiglio comunale vota per lo scioglimento della polizia"
+  },
+  {
+   "id": "K287",
+   "query": "confermato rappresentare song contest",
+   "doc_id": 48531,
+   "title": "Azerbaigian: Samira Efendi all'Eurovision 2021"
+  },
+  {
+   "id": "K288",
+   "query": "chiesa cattolica copia vescovi",
+   "doc_id": 26825,
+   "title": "Il Papa riceve il presidente degli Stati Uniti Obama: «Sulle divergenze si possono cercare cammini comuni»"
+  },
+  {
+   "id": "K289",
+   "query": "vento stockport heidelberg albero",
+   "doc_id": 9714,
+   "title": "Uragano Kyrill: oltre 35 vittime"
+  },
+  {
+   "id": "K290",
+   "query": "medaglia piller cottrer centa",
+   "doc_id": 4808,
+   "title": "Giochi Olimpici Invernali 2006 Sci di fondo, bronzo per l'Italia"
+  },
+  {
+   "id": "K291",
+   "query": "passeggeri porto sbandata ormeggio",
+   "doc_id": 24261,
+   "title": "Genova: causa cattivo tempo nave traghetto in difficoltà, diversi feriti"
+  },
+  {
+   "id": "K292",
+   "query": "consolle netflix cessazione shop",
+   "doc_id": 47096,
+   "title": "Niente più servizi di streaming video su Nintendo Wii dal 31 gennaio 2019"
+  },
+  {
+   "id": "K293",
+   "query": "yahya massacro atrocità eliminato",
+   "doc_id": 53391,
+   "title": "L'esercito israeliano ha ucciso il capo di Hamas"
+  },
+  {
+   "id": "K294",
+   "query": "riproposti giuria demoscopica giurati",
+   "doc_id": 11637,
+   "title": "Sanremo 2007/Quarta serata"
+  },
+  {
+   "id": "K295",
+   "query": "interruzione acilia atac rimanente",
+   "doc_id": 50019,
+   "title": "Roma-Lido: si stacca cavo della linea aerea, panico tra i passeggeri e ferrovia interrotta"
+  },
+  {
+   "id": "K296",
+   "query": "mulas fedora zedde istrice",
+   "doc_id": 29630,
+   "title": "La Selva si aggiudica la terza prova del Palio di luglio"
+  },
+  {
+   "id": "K297",
+   "query": "desmon cavallo algia cautelativamente",
+   "doc_id": 7673,
+   "title": "La Torre non parteciperà al Palio di Siena"
+  },
+  {
+   "id": "K298",
+   "query": "psichici ipermercato carrefour ferendone",
+   "doc_id": 51234,
+   "title": "Un uomo ha accoltellato sei persone in un centro commerciale ad Assago"
+  },
+  {
+   "id": "K299",
+   "query": "indonesiano aiuti umanitari stanziato",
+   "doc_id": 5983,
+   "title": "Si aggrava il bilancio dei morti in Indonesia"
+  },
+  {
+   "id": "K300",
+   "query": "sporcato internacional alegre batté",
+   "doc_id": 36715,
+   "title": "Il Corinthians vince la Coppa del mondo per club FIFA 2012"
+  }
+ ]
+}

@@ -1,10 +1,11 @@
 """Query layer on top of the Elasticsearch index (used by the web app and the evaluation).
 
-Ranking profiles (compared in the evaluation):
-  * baseline : standard analyzer, title + body, plain BM25
-  * italian  : Italian analyzer (elision, stopwords, folding, light stemming),
-               fields title^3, lead^1.5, body, categories^2, location
-  * full     : italian + boosts for exact phrases and adjacent word pairs (shingles)
+Ranking profiles (selectable in the UI, compared in eval/evaluate.py):
+  * baseline : standard analyzer, title + body, plain BM25 (OR)
+  * v1       : first design: Italian analyzer, best_fields over title^3, lead^1.5, body,
+               categories^2, location; minimum_should_match 2<75%; phrase/shingle bonuses
+  * full     : production, chosen by the evaluation: Italian analyzer, cross_fields over
+               title^1.5, lead, body; minimum_should_match 50%; no phrase bonuses
 
 CLI:
     python src/search.py "papa francesco" [--profile full] [-k 10]
@@ -21,9 +22,40 @@ from elasticsearch import Elasticsearch
 
 ES_URL = os.environ.get("ES_URL", "http://localhost:9200")
 INDEX = os.environ.get("ES_INDEX", "wikinews")
-PROFILES = ("baseline", "italian", "full")
-
 ADVANCED_SYNTAX = re.compile(r'["+|*~()]|(^|\s)-\w')
+
+
+@dataclass(frozen=True)
+class RankConfig:
+    """A ranking configuration. Named profiles below; the evaluation builds ablations from them."""
+    suffix: str = ""                       # "" = Italian analyzer, ".std" = standard, ".exact" = no stemming
+    title_boost: float = 3.0
+    lead_boost: float = 1.5
+    use_lead: bool = True
+    use_categories: bool = True            # categories^2 + location (editorial metadata)
+    min_match: str | None = "2<75%"        # None = plain OR
+    phrase_boosts: bool = True             # exact phrase + shingle bonuses
+    mm_type: str = "best_fields"           # multi_match type: best_fields | most_fields | cross_fields
+    tie_breaker: float = 0.3
+
+    def fields(self) -> list[str]:
+        sfx = self.suffix
+        out = [f"title{sfx}^{self.title_boost:g}", f"body{sfx}"]
+        if self.use_lead and sfx in ("", ".std"):
+            out.append(f"lead{sfx}^{self.lead_boost:g}")
+        if self.use_categories:
+            out += ["categories.text^2", "location.text"]
+        return out
+
+
+PROFILE_CONFIGS: dict[str, RankConfig] = {
+    "baseline": RankConfig(suffix=".std", title_boost=1, use_lead=False, use_categories=False,
+                           min_match=None, phrase_boosts=False),
+    "v1": RankConfig(),
+    "full": RankConfig(mm_type="cross_fields", min_match="50%", title_boost=1.5, lead_boost=1,
+                       use_categories=False, phrase_boosts=False),
+}
+PROFILES = tuple(PROFILE_CONFIGS)
 
 
 @dataclass
@@ -35,28 +67,33 @@ class Filters:
     location: str | None = None
 
 
-def text_query(q: str, profile: str = "full") -> dict:
+def resolve(profile: str | RankConfig) -> RankConfig:
+    if isinstance(profile, RankConfig):
+        return profile
+    return PROFILE_CONFIGS.get(profile, PROFILE_CONFIGS["full"])
+
+
+def text_query(q: str, profile: str | RankConfig = "full") -> dict:
     q = q.strip()
     if not q:
         return {"match_all": {}}
-
-    if profile == "baseline":
-        return {"multi_match": {"query": q, "fields": ["title.std", "body.std"]}}
-
-    it_fields = ["title^3", "lead^1.5", "body", "categories.text^2", "location.text"]
+    cfg = resolve(profile)
+    fields = cfg.fields()
 
     # Power-user syntax: "exact phrase", +must, -exclude, a | b, prefix*
     if ADVANCED_SYNTAX.search(q):
         return {"simple_query_string": {
-            "query": q, "fields": it_fields, "default_operator": "and",
-            "quote_field_suffix": ".exact" if profile == "full" else "",
+            "query": q, "fields": fields, "default_operator": "and",
+            # quoted phrases are matched on unstemmed text (except in the baseline)
+            "quote_field_suffix": "" if cfg.suffix == ".std" else ".exact",
         }}
 
-    main = {"multi_match": {
-        "query": q, "fields": it_fields, "type": "best_fields",
-        "tie_breaker": 0.3, "minimum_should_match": "2<75%",
-    }}
-    if profile == "italian":
+    main: dict = {"multi_match": {"query": q, "fields": fields, "type": cfg.mm_type}}
+    if cfg.mm_type != "most_fields":
+        main["multi_match"]["tie_breaker"] = cfg.tie_breaker
+    if cfg.min_match:
+        main["multi_match"]["minimum_should_match"] = cfg.min_match
+    if not cfg.phrase_boosts:
         return main
 
     return {"bool": {
@@ -88,7 +125,7 @@ def filter_clauses(f: Filters | None) -> list[dict]:
     return out
 
 
-def build_body(q: str, profile: str = "full", filters: Filters | None = None,
+def build_body(q: str, profile: str | RankConfig = "full", filters: Filters | None = None,
                sort: str = "relevance", page: int = 1, size: int = 10,
                facets: bool = True, highlight: bool = True) -> dict:
     body: dict = {
@@ -129,7 +166,7 @@ class Searcher:
     def search(self, q: str, **kw) -> dict:
         return self.es.search(index=self.index, **build_body(q, **kw)).body
 
-    def ids(self, q: str, profile: str, k: int = 10) -> list[int]:
+    def ids(self, q: str, profile: str | RankConfig, k: int = 10) -> list[int]:
         res = self.search(q, profile=profile, size=k, facets=False, highlight=False)
         return [h["_source"]["id"] for h in res["hits"]["hits"]]
 
