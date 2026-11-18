@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block title %}{{ q or "Tutte le notizie" }} — Wikinotizie Search{% endblock %}
+{% block content %}
+<div class="layout">
+  <aside class="facets" aria-label="Filtri">
+    {% if active_filters %}
+      <a class="clear" href="{{ url_with(params, cat=None, pub=None, year_from=None, year_to=None) }}">✕ Rimuovi tutti i filtri</a>
+    {% endif %}
+
+    <section>
+      <h3>Anno</h3>
+      {% if years %}
+      <div class="years" role="list">
+        {% for y, c in years %}
+          {% set active = params.year_from == y and params.year_to == y %}
+          <a role="listitem" class="ybar{% if active %} active{% endif %}"
+             href="{{ url_with(params, year_from=None if active else y, year_to=None if active else y) }}"
+             title="{{ y }}: {{ c }} notizie">
+            <span style="height: {{ (4 + 56 * c / max_year_count) | round(1) }}px"></span>
+          </a>
+        {% endfor %}
+      </div>
+      <div class="yaxis"><span>{{ years[0][0] }}</span><span>{{ years[-1][0] }}</span></div>
+      {% endif %}
+      <form class="yearform" action="/search" method="get">
+        <input type="hidden" name="q" value="{{ q }}">
+        {% for c in params.cat %}<input type="hidden" name="cat" value="{{ c }}">{% endfor %}
+        {% for p in params.pub %}<input type="hidden" name="pub" value="{{ p }}">{% endfor %}
+        <input type="hidden" name="sort" value="{{ params.sort }}"><input type="hidden" name="profile" value="{{ params.profile }}">
+        <input type="number" name="year_from" min="2004" max="2025" placeholder="dal" value="{{ params.year_from or '' }}" aria-label="Anno iniziale">
+        <input type="number" name="year_to" min="2004" max="2025" placeholder="al" value="{{ params.year_to or '' }}" aria-label="Anno finale">
+        <button type="submit">OK</button>
+      </form>
+    </section>
+
+    <section>
+      <h3>Categorie</h3>
+      <ul>
+      {% for c in params.cat %}
+        <li><a class="facet on" href="{{ url_with(params, cat=params.cat | reject('equalto', c) | list) }}">✓ {{ c }}</a></li>
+      {% endfor %}
+      {% for b in cat_facets if b.key not in params.cat %}
+        <li><a class="facet" href="{{ url_with(params, cat=params.cat + [b.key]) }}">{{ b.key }} <span>{{ b.doc_count }}</span></a></li>
+      {% endfor %}
+      </ul>
+    </section>
+
+    {% if pub_facets or params.pub %}
+    <section>
+      <h3>Fonte</h3>
+      <ul>
+      {% for p in params.pub %}
+        <li><a class="facet on" href="{{ url_with(params, pub=params.pub | reject('equalto', p) | list) }}">✓ {{ p }}</a></li>
+      {% endfor %}
+      {% for b in pub_facets if b.key not in params.pub %}
+        <li><a class="facet" href="{{ url_with(params, pub=params.pub + [b.key]) }}">{{ b.key }} <span>{{ b.doc_count }}</span></a></li>
+      {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </aside>
+
+  <section class="results">
+    <div class="toolbar">
+      <p class="count">
+        {% if total %}<strong>{{ "{:,}".format(total).replace(",", ".") }}</strong> risultati{% else %}Nessun risultato{% endif %}
+        <span class="muted">({{ took }} ms)</span>
+      </p>
+      <div class="controls">
+        <label>Ordina
+          <select onchange="location.href=this.value">
+            {% for val, lab in [("relevance", "Rilevanza"), ("date_desc", "Più recenti"), ("date_asc", "Meno recenti")] %}
+              <option value="{{ url_with(params, sort=val) }}" {% if params.sort == val %}selected{% endif %}>{{ lab }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label title="Configurazione di ranking (per confronto in demo)">Ranking
+          <select onchange="location.href=this.value">
+            {% for p in profiles %}
+              <option value="{{ url_with(params, profile=p) }}" {% if params.profile == p %}selected{% endif %}>{{ p }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </div>
+    </div>
+
+    {% if active_filters %}
+    <div class="chips">
+      {% for c in params.cat %}<a class="chip" href="{{ url_with(params, cat=params.cat | reject('equalto', c) | list) }}">{{ c }} ✕</a>{% endfor %}
+      {% for p in params.pub %}<a class="chip" href="{{ url_with(params, pub=params.pub | reject('equalto', p) | list) }}">{{ p }} ✕</a>{% endfor %}
+      {% if params.year_from or params.year_to %}
+        <a class="chip" href="{{ url_with(params, year_from=None, year_to=None) }}">
+          {% if params.year_from == params.year_to %}{{ params.year_from }}{% else %}{{ params.year_from or "…" }}–{{ params.year_to or "…" }}{% endif %} ✕</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if not hits %}
+      <div class="empty">
+        <p>Nessuna notizia trovata{% if q %} per <strong>{{ q }}</strong>{% endif %}.</p>
+        <p class="muted">Prova con meno parole, rimuovi i filtri o usa sinonimi.</p>
+      </div>
+    {% endif %}
+
+    <ol class="hits" start="{{ (page - 1) * 10 + 1 }}">
+    {% for h in hits %}
+      <li class="hit">
+        {% if h.image %}<img class="thumb" src="{{ h.image | thumb(330) }}" data-full="{{ h.image }}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="if(this.src!==this.dataset.full)this.src=this.dataset.full">{% endif %}
+        <div class="hit-body">
+          <div class="meta">
+            {% if h.date %}<time datetime="{{ h.date }}">{{ h.date | itdate }}</time>{% endif %}
+            {% if h.location %} · {{ h.location }}{% endif %}
+            {% if h.publishers %} · <span class="muted">fonte: {{ h.publishers[:2] | join(", ") }}</span>{% endif %}
+          </div>
+          <h2><a href="/article/{{ h.id }}?q={{ q | urlencode }}">{{ (h.title_hl or h.title | e) | safe }}</a></h2>
+          {% if h.snippets %}
+            <p class="snippet">{% for s in h.snippets %}{{ s | safe }}{% if not loop.last %} … {% endif %}{% endfor %}</p>
+          {% else %}
+            <p class="snippet">{{ h.lead[:260] }}{% if h.lead | length > 260 %}…{% endif %}</p>
+          {% endif %}
+          <div class="tags">
+            {% for c in h.categories[:5] %}<a href="{{ url_with(params, cat=params.cat + [c] if c not in params.cat else params.cat) }}">{{ c }}</a>{% endfor %}
+            {% if h.score and params.sort == "relevance" %}<span class="score" title="Punteggio BM25">{{ "%.1f" | format(h.score) }}</span>{% endif %}
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+    </ol>
+
+    {% if pages > 1 %}
+    <nav class="pager" aria-label="Pagine">
+      {% set base = url_with(params) %}
+      {% if page > 1 %}<a href="{{ base }}&page={{ page - 1 }}">‹ Precedente</a>{% endif %}
+      {% for p in range([1, page - 3] | max, [pages, page + 3] | min + 1) %}
+        {% if p == page %}<span class="current">{{ p }}</span>{% else %}<a href="{{ base }}&page={{ p }}">{{ p }}</a>{% endif %}
+      {% endfor %}
+      {% if page < pages %}<a href="{{ base }}&page={{ page + 1 }}">Successiva ›</a>{% endif %}
+    </nav>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

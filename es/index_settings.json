@@ -1,0 +1,98 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "analysis": {
+      "filter": {
+        "it_elision": {
+          "type": "elision",
+          "articles_case": true,
+          "articles": ["c", "l", "all", "dall", "dell", "nell", "sull", "coll", "pell",
+                       "gl", "agl", "dagl", "degl", "negl", "sugl", "un", "m", "t", "s", "v", "d", "quest", "quell", "anch", "tutt", "sant", "cent", "nessun"]
+        },
+        "it_stop": { "type": "stop", "stopwords": "_italian_" },
+        "it_light_stem": { "type": "stemmer", "language": "light_italian" },
+        "it_shingle": { "type": "shingle", "min_shingle_size": 2, "max_shingle_size": 2, "output_unigrams": false }
+      },
+      "analyzer": {
+        "it_text": {
+          "comment": "main analyzer: elision + lowercase + accent folding + stopwords + light stemming",
+          "tokenizer": "standard",
+          "filter": ["it_elision", "lowercase", "it_stop", "asciifolding", "it_light_stem"]
+        },
+        "it_exact": {
+          "comment": "no stemming, no stopwords: rewards exact word forms",
+          "tokenizer": "standard",
+          "filter": ["it_elision", "lowercase", "asciifolding"]
+        },
+        "it_shingles": {
+          "comment": "word bigrams: rewards adjacent query terms (e.g. 'papa francesco')",
+          "tokenizer": "standard",
+          "filter": ["it_elision", "lowercase", "asciifolding", "it_shingle"]
+        },
+        "folded_keyword": {
+          "tokenizer": "keyword",
+          "filter": ["lowercase", "asciifolding"]
+        }
+      },
+      "normalizer": {
+        "folded": { "type": "custom", "filter": ["lowercase", "asciifolding"] }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "id":            { "type": "integer" },
+      "url":           { "type": "keyword", "index": false },
+      "title": {
+        "type": "text", "analyzer": "it_text",
+        "fields": {
+          "std":     { "type": "text", "analyzer": "standard" },
+          "exact":   { "type": "text", "analyzer": "it_exact" },
+          "shingles":{ "type": "text", "analyzer": "it_shingles" },
+          "suggest": { "type": "search_as_you_type", "analyzer": "it_exact" },
+          "raw":     { "type": "keyword", "normalizer": "folded" }
+        }
+      },
+      "lead": {
+        "type": "text", "analyzer": "it_text",
+        "fields": { "std": { "type": "text", "analyzer": "standard" } }
+      },
+      "body": {
+        "type": "text", "analyzer": "it_text", "term_vector": "with_positions_offsets",
+        "fields": {
+          "std":      { "type": "text", "analyzer": "standard" },
+          "exact":    { "type": "text", "analyzer": "it_exact" },
+          "shingles": { "type": "text", "analyzer": "it_shingles" }
+        }
+      },
+      "categories": {
+        "type": "keyword",
+        "fields": { "text": { "type": "text", "analyzer": "it_text" } }
+      },
+      "location":    { "type": "keyword", "fields": { "text": { "type": "text", "analyzer": "it_text" } } },
+      "date":        { "type": "date", "format": "yyyy-MM-dd" },
+      "date_source": { "type": "keyword" },
+      "year":        { "type": "integer" },
+      "sources": {
+        "properties": {
+          "title":     { "type": "text", "analyzer": "it_text" },
+          "url":       { "type": "keyword", "index": false },
+          "publisher": { "type": "keyword", "normalizer": "folded" },
+          "author":    { "type": "keyword", "index": false },
+          "date":      { "type": "keyword", "index": false },
+          "lang":      { "type": "keyword" },
+          "printed":   { "type": "boolean" }
+        }
+      },
+      "publishers":    { "type": "keyword" },
+      "related":       { "type": "text", "analyzer": "it_text" },
+      "image":         { "type": "keyword", "index": false },
+      "wikidata":      { "type": "keyword" },
+      "archived":      { "type": "boolean" },
+      "last_modified": { "type": "date" },
+      "n_chars":       { "type": "integer" }
+    }
+  }
+}

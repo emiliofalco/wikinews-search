@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ doc.title }} — Wikinotizie Search{% endblock %}
+{% block content %}
+<article class="article">
+  {% if q %}<a class="back" href="/search?q={{ q | urlencode }}">‹ Torna ai risultati per “{{ q }}”</a>{% endif %}
+  <div class="meta">
+    {% if doc.date %}<time datetime="{{ doc.date }}">{{ doc.date | itdate }}</time>{% endif %}
+    {% if doc.location %} · {{ doc.location }}{% endif %}
+    {% if doc.archived %} · <span class="badge">archiviato</span>{% endif %}
+  </div>
+  <h1>{{ doc.title }}</h1>
+  {% if doc.image %}
+    <figure><img src="{{ doc.image | thumb(960) }}" data-full="{{ doc.image }}" alt="" referrerpolicy="no-referrer" onerror="if(this.src!==this.dataset.full)this.src=this.dataset.full"></figure>
+  {% endif %}
+  <div class="text">
+    {% for p in paragraphs %}<p>{{ p }}</p>{% endfor %}
+  </div>
+
+  <div class="tags">
+    {% for c in doc.categories %}<a href="/search?cat={{ c | urlencode }}">{{ c }}</a>{% endfor %}
+  </div>
+
+  {% if doc.sources %}
+  <section class="box">
+    <h2>Fonti</h2>
+    <ul>
+    {% for s in doc.sources %}
+      <li><a href="{{ s.url }}" rel="nofollow noopener" target="_blank">{{ s.title or s.url }}</a>
+        <span class="muted">{% if s.publisher %}{{ s.publisher }}{% endif %}{% if s.date %} · {{ s.date }}{% endif %}</span></li>
+    {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if doc.related %}
+  <section class="box">
+    <h2>Articoli correlati (Wikinotizie)</h2>
+    <ul>{% for r in doc.related %}<li><a href="/search?q={{ ('"' ~ r ~ '"') | urlencode }}">{{ r }}</a></li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+
+  {% if similar %}
+  <section class="box">
+    <h2>Notizie simili</h2>
+    <ul>{% for s in similar %}<li><a href="/article/{{ s.id }}">{{ s.title }}</a> <span class="muted">{{ s.date | itdate }}</span></li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+
+  <p class="muted small">Leggi l'originale su <a href="{{ doc.url }}" target="_blank" rel="noopener">it.wikinews.org</a></p>
+</article>
+{% endblock %}

@@ -1,0 +1,6 @@
+beautifulsoup4
+lxml
+elasticsearch>=8.15,<9
+fastapi
+uvicorn[standard]
+jinja2

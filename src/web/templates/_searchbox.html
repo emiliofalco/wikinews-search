@@ -1,0 +1,17 @@
+<form class="searchbox" action="/search" method="get" role="search" autocomplete="off">
+  <div class="sb-wrap">
+    <input type="search" name="q" value="{{ q }}" placeholder="Cerca tra le notizie… (es. terremoto Abruzzo, &quot;governo Prodi&quot;)" aria-label="Cerca" id="q" autofocus>
+    <ul class="suggestions" id="suggestions" role="listbox" hidden></ul>
+  </div>
+  {% if params is defined %}
+    {% for c in params.cat %}<input type="hidden" name="cat" value="{{ c }}">{% endfor %}
+    {% for p in params.pub %}<input type="hidden" name="pub" value="{{ p }}">{% endfor %}
+    {% if params.year_from %}<input type="hidden" name="year_from" value="{{ params.year_from }}">{% endif %}
+    {% if params.year_to %}<input type="hidden" name="year_to" value="{{ params.year_to }}">{% endif %}
+    <input type="hidden" name="sort" value="{{ params.sort }}">
+    <input type="hidden" name="profile" value="{{ params.profile }}">
+  {% endif %}
+  <button type="submit" aria-label="Cerca">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+</form>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Wikinotizie Search{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  {% block header %}
+  <header class="topbar">
+    <a class="brand" href="/">Wiki<span>notizie</span> <small>search</small></a>
+    {% include "_searchbox.html" %}
+  </header>
+  {% endblock %}
+  <main>{% block content %}{% endblock %}</main>
+  <footer class="footer">
+    Contenuti da <a href="https://it.wikinews.org">it.wikinews.org</a> (dump Wikimedia Enterprise del 20/03/2025) · CC BY-SA ·
+    Ingegneria dei Dati 2026/27 — Homework 4
+  </footer>
+  <script src="/static/suggest.js"></script>
+</body>
+</html>

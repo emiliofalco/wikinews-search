@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block header %}{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1 class="brand big">Wiki<span>notizie</span></h1>
+  <p class="tagline">Motore di ricerca su {{ "{:,}".format(n_docs).replace(",", ".") }} notizie in italiano, dal 2005 al 2025</p>
+  {% include "_searchbox.html" %}
+  <div class="examples">
+    Prova:
+    {% for ex in ["papa francesco", "terremoto in abruzzo", "\"governo Prodi\"", "olimpiadi torino 2006", "covid lockdown", "elezioni presidenziali"] %}
+      <a href="/search?q={{ ex | urlencode }}">{{ ex }}</a>
+    {% endfor %}
+  </div>
+  <details class="syntax">
+    <summary>Sintassi avanzata</summary>
+    <ul>
+      <li><code>"frase esatta"</code> — cerca le parole in sequenza</li>
+      <li><code>+parola</code> obbligatoria, <code>-parola</code> esclusa</li>
+      <li><code>roma | milano</code> — almeno uno dei termini</li>
+      <li><code>calc*</code> — ricerca per prefisso</li>
+    </ul>
+  </details>
+</section>
+{% endblock %}
