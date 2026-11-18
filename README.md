@@ -5,6 +5,8 @@ costruito sul dump Wikimedia Enterprise HTML del 20 marzo 2025.
 
 *Ingegneria dei Dati 2026/2027 — Homework 4*
 
+**Gruppo:** Emilio Falco · Carlo Nota · Luca Peperoni
+
 - **11.030 articoli** pubblicati (2005–2025), indicizzati con Elasticsearch 8 e un analyzer italiano personalizzato
 - ricerca full-text con evidenziazione dei termini, filtri per anno, categoria e testata, ordinamento per data
 - sintassi avanzata (`"frase esatta"`, `+obbligatorio`, `-escluso`, `a | b`, `prefisso*`)
